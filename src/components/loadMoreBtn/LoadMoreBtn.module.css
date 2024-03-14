@@ -1,0 +1,22 @@
+.wrapper {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.loadMoreBtn {
+  text-align: center;
+  margin-left: 16px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  background: #4e75ff;
+  border: none;
+  height: 40px;
+  width: 120px;
+  outline: none;
+  transition: background-color 250ms ease;
+}
+
+.loadMoreBtn:hover {
+  background-color: #6c8cff;
+}

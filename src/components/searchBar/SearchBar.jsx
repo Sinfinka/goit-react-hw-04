@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from "formik"; //<= , ErrorMessage
 // import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
+import css from "./SearchBar.module.css";
 
 export default function SearchBar({ onSubmit }) {
   // const TextSchema = Yup.object().shape({
@@ -25,8 +26,9 @@ export default function SearchBar({ onSubmit }) {
       }}
       // validationSchema={TextSchema}
     >
-      <Form>
+      <Form className={css.form}>
         <Field
+          className={css.input}
           name="searchText"
           type="text"
           autoComplete="off"
@@ -34,8 +36,10 @@ export default function SearchBar({ onSubmit }) {
           placeholder="Search images and photos"
         />
         {/* <ErrorMessage name="searchText" /> */}
-        <button type="submit">Search</button>
-        <Toaster />
+        <button className={css.searchBtn} type="submit">
+          Search
+        </button>
+        <Toaster position="top-right" reverseOrder={false} />
       </Form>
     </Formik>
   );
