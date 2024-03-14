@@ -5,7 +5,7 @@ export default function Loader() {
     <InfinitySpin
       visible={true}
       width="200"
-      color="#4fa94d"
+      color="#bbbbbb"
       ariaLabel="infinity-spin-loading"
     />
   );

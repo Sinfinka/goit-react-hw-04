@@ -1,5 +1,7 @@
 import Modal from "react-modal";
 import { MdClose } from "react-icons/md";
+import { FcLike } from "react-icons/fc";
+import css from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
 
@@ -26,17 +28,21 @@ export default function ImageModal({
       contentLabel="Example Modal"
       style={customStyles}
     >
-      <div>
-        <MdClose onClick={onRequestClose} />
+      <div className={css.modal}>
+        <MdClose className={css.closeBtn} onClick={onRequestClose} />
 
-        <img src={imgUrl} alt={alt_description} />
-        <p>{description}</p>
-        <p>{user?.username}</p>
-        <img
-          src={user?.profile_image.small}
-          alt={alt_description ?? "Description is not available"}
-        />
-        <p>{likes}</p>
+        <img className={css.image} src={imgUrl} alt={alt_description} />
+        <div className={css.userWrapper}>
+          <img
+            className={css.userAvatar}
+            src={user?.profile_image.small}
+            alt={alt_description ?? "Description is not available"}
+          />
+          <p className={css.userName}>{user?.username}</p>
+          <FcLike className={css.heart} />
+          <p className={css.likes}>{likes}</p>
+        </div>
+        <p className={css.description}> {description}</p>
       </div>
     </Modal>
   );
