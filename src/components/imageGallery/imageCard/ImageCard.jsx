@@ -2,7 +2,6 @@ export default function ImageCard({
   image: { urls, description, alt_description, user, likes },
   openModal,
 }) {
-  console.log(user);
   return (
     <div>
       <img

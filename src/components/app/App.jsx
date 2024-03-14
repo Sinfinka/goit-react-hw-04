@@ -6,6 +6,7 @@ import LoadMoreBtn from "../loadMoreBtn/LoadMoreBtn";
 import { useEffect, useState } from "react";
 import { fetchImages } from "../../images-api";
 import ImageModal from "../imageModal/ImageModal";
+import NotFoundMessage from "../notFoundMessage/NotFoundMessage";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -64,6 +65,9 @@ function App() {
       {error && <ErrorMessage />}
       {images.length > 0 && (
         <ImageGallery images={images} openModal={openModal} />
+      )}
+      {query && images.length === 0 && !loading && !error && (
+        <NotFoundMessage />
       )}
       {images.length > 0 && !loading && (
         <LoadMoreBtn onClick={handleLoadMore} />

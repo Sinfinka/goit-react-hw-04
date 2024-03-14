@@ -1,22 +1,29 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { Formik, Form, Field } from "formik"; //<= , ErrorMessage
+// import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SearchBar({ onSubmit }) {
-  const TextSchema = Yup.object().shape({
-    searchText: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required(),
-  });
+  // const TextSchema = Yup.object().shape({
+  //   searchText: Yup.string()
+  //     .min(3, "Too Short!")
+  //     .max(25, "Too Long!")
+  //     .required(),
+  // });
 
   return (
     <Formik
       initialValues={{ searchText: "" }}
       onSubmit={(values, actions) => {
-        onSubmit(values.searchText);
-        actions.resetForm();
+        if (values.searchText.length < 3) {
+          toast.error("Search text is too short!");
+        } else if (values.searchText.length > 25) {
+          toast.error("Search text is too long!");
+        } else {
+          onSubmit(values.searchText);
+          actions.resetForm();
+        }
       }}
-      validationSchema={TextSchema}
+      // validationSchema={TextSchema}
     >
       <Form>
         <Field
@@ -26,8 +33,9 @@ export default function SearchBar({ onSubmit }) {
           autoFocus
           placeholder="Search images and photos"
         />
-        <ErrorMessage name="searchText" />
+        {/* <ErrorMessage name="searchText" /> */}
         <button type="submit">Search</button>
+        <Toaster />
       </Form>
     </Formik>
   );
